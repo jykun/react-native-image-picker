@@ -429,7 +429,8 @@ public class ImagePickerModule extends ReactContextBaseJavaModule implements Act
       }
     }
 
-    response.putString("uri", uri.toString());
+    //response.putString("uri", uri.toString());
+    response.putString("uri", realPath);
     response.putString("path", realPath);
 
     if (!noData) {
