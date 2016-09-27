@@ -28,7 +28,8 @@ Use [rnpm](https://github.com/rnpm/rnpm) to automatically complete the installat
 1. In the XCode's "Project navigator", right click on your project's Libraries folder ➜ `Add Files to <...>`
 2. Go to `node_modules` ➜ `react-native-image-picker` ➜ `ios` ➜ select `RNImagePicker.xcodeproj`
 3. Add `RNImagePicker.a` to `Build Phases -> Link Binary With Libraries`
-4. Compile and have fun
+4. For iOS 10+, Add the `NSPhotoLibraryUsageDescription` and `NSCameraUsageDescription` keys to your `Info.plist` with strings describing why your app needs these permissions
+5. Compile and have fun
 
 ### Android
 ```gradle
@@ -89,9 +90,9 @@ var ImagePicker = require('react-native-image-picker');
 // More info on all the options is below in the README...just some common use cases shown here
 var options = {
   title: 'Select Avatar',
-  customButtons: {
-    'Choose Photo from Facebook': 'fb',
-  },
+  customButtons: [
+    {name: 'fb', title: 'Choose Photo from Facebook'},
+  ],
   storageOptions: {
     skipBackup: true,
     path: 'images'
@@ -164,7 +165,7 @@ title | OK | OK | Specify `null` or empty string to remove the title
 cancelButtonTitle | OK | OK |
 takePhotoButtonTitle | OK | OK | Specify `null` or empty string to remove this button
 chooseFromLibraryButtonTitle | OK | OK | Specify `null` or empty string to remove this button
-customButtons | OK | OK | An object in the form of `[Button Text] : [String returned upon selection]`
+customButtons | OK | OK | An array containing objects with the name and title of buttons
 cameraType | OK | - | 'front' or 'back'
 mediaType | OK | OK | 'photo', 'video', or 'mixed' on iOS, 'photo' or 'video' on Android
 maxWidth | OK | OK | Photos only
